@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Random_Guess_Activity">
+
+    <TextView
+        android:id="@+id/Prompt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Guess a number between 0 and "
+        android:textSize="20sp"
+        android:textColor="@color/teal_200"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.096" />
+
+    <EditText
+        android:id="@+id/Input_Guess"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:ems="10"
+        android:inputType="number"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.473"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/Prompt"
+        app:layout_constraintVertical_bias="0.128" />
+
+    <Button
+        android:id="@+id/Guess_Action"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Play"
+        android:layout_margin="10dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/Input_Guess"
+        app:layout_constraintVertical_bias="0.105" />
+
+    <TextView
+        android:id="@+id/Contador"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="counter: 5"
+        android:textColor="@color/Green"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.084"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/Guess_Action"
+        app:layout_constraintVertical_bias="0.197" />
+
+    <TextView
+        android:id="@+id/Pista"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="menssage: 45 is smaller"
+        android:textColor="@color/teal_200"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.139"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/Guess_Action"
+        app:layout_constraintVertical_bias="0.392" />
+</androidx.constraintlayout.widget.ConstraintLayout>

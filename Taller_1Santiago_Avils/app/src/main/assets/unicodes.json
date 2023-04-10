@@ -1,0 +1,153 @@
+{
+  "unicodes": [
+    {
+      "nombre": "Alemania",
+      "UNC1": "0x1F1E9",
+      "UNC2": "0x1F1EA"
+    },
+
+    {
+      "nombre" : "Argentina",
+      "UNC1": "0x1F1E6",
+      "UNC2": "0x1F1F7"
+    },
+
+    {
+      "nombre" : "Australia",
+      "UNC1": "0x1F1E6",
+      "UNC2": "0x1F1FA"
+    },
+
+    {
+      "nombre" : "Austria",
+      "UNC1": "0x1F1E6",
+      "UNC2": "0x1F1F9"
+    },
+
+    {
+      "nombre" : "Bélgica",
+      "UNC1": "0x1F1E7",
+      "UNC2": "0x1F1EA"
+    },
+
+    {
+      "nombre" : "Bolívia",
+      "UNC1": "0x1F1E7",
+      "UNC2": "0x1F1F4"
+    },
+
+    {
+      "nombre" : "Brasil",
+      "UNC1": "0x1F1E7",
+      "UNC2": "0x1F1F7"
+    },
+
+    {
+      "nombre" : "Chile",
+      "UNC1": "0x1F1E8",
+      "UNC2": "0x1F1F1"
+    },
+
+    {
+      "nombre" : "Colombia",
+      "UNC1": "0x1F1E8",
+      "UNC2": "0x1F1F4"
+    },
+
+    {
+      "nombre" : "Cuba",
+      "UNC1": "0x1F1E8",
+      "UNC2": "0x1F1FA"
+    },
+
+    {
+      "nombre" : "Ecuador",
+      "UNC1": "0x1F1EA",
+      "UNC2": "0x1F1E8"
+    },
+
+    {
+      "nombre" : "España",
+      "UNC1": "0x1F1EA",
+      "UNC2": "0x1F1F8"
+    },
+
+    {
+      "nombre" : "Estados Unidos",
+      "UNC1": "0x1F1FA",
+      "UNC2": "0x1F1F8"
+    },
+
+    {
+      "nombre" : "Francia",
+      "UNC1": "0x1F1EB",
+      "UNC2": "0x1F1F7"
+    },
+
+    {
+      "nombre" : "Reino Unido",
+      "UNC1": "0x1F1EC",
+      "UNC2": "0x1F1E7"
+    },
+
+    {
+      "nombre" : "Grecia",
+      "UNC1": "0x1F1EC",
+      "UNC2": "0x1F1F7"
+    },
+
+    {
+      "nombre" : "Holanda",
+      "UNC1": "0x1F1F3",
+      "UNC2": "0x1F1F1"
+    },
+
+    {
+      "nombre" : "Hungria",
+      "UNC1": "0x1F1ED",
+      "UNC2": "0x1F1FA"
+    },
+
+    {
+      "nombre" : "Irlanda",
+      "UNC1": "0x1F1EE",
+      "UNC2": "0x1F1EA"
+    },
+
+    {
+      "nombre" : "Islandia",
+      "UNC1": "0x1F1EE",
+      "UNC2": "0x1F1F8"
+    },
+
+    {
+      "nombre" : "Israel",
+      "UNC1": "0x1F1EE",
+      "UNC2": "0x1F1F1"
+    },
+
+    {
+      "nombre" : "Italia",
+      "UNC1": "0x1F1EE",
+      "UNC2": "0x1F1F9"
+    },
+
+    {
+      "nombre" : "Japón",
+      "UNC1": "0x1F1EF",
+      "UNC2": "0x1F1F5"
+    },
+
+    {
+      "nombre" : "Uruguay",
+      "UNC1": "0x1F1FA",
+      "UNC2": "0x1F1FE"
+    },
+
+    {
+      "nombre" : "Venezuela",
+      "UNC1": "0x1F1FB",
+      "UNC2": "0x1F1EA"
+    }
+  ]
+}

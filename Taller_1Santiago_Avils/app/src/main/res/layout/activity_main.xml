@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <TextView
+        android:id="@+id/Titulo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/Titulo"
+        android:textColor="@color/teal_200"
+        android:textSize="35sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.077" />
+
+    <Button
+        android:id="@+id/Guess_Game"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/B_Juego_Adivinar"
+        android:layout_margin="10dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/Titulo"
+        app:layout_constraintVertical_bias="0.105" />
+
+    <EditText
+        android:id="@+id/Input_Number"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:ems="10"
+        android:inputType="number"
+        android:text="0 - 100"
+        android:textColor="@color/Transparente"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/Guess_Game" />
+
+    <Button
+        android:id="@+id/Greet"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/B_Saludo"
+        android:layout_margin="10dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/Input_Number"
+        app:layout_constraintVertical_bias="0.211" />
+
+    <Spinner
+        android:id="@+id/spinner"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:layout_margin="10dp"
+        android:entries="@array/Idiomas"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.473"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/Greet"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <Button
+        android:id="@+id/Countries"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/B_Paises"
+        android:layout_margin="10dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/spinner" />
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">Taller_1-Santiago_Avilés</string>
+    <string name="Titulo"> Taller 1</string>
+    <string name="B_Juego_Adivinar">Guess Game</string>
+    <string name="B_Saludo">Random Greet</string>
+    <string name="B_Paises">Countries</string>
+
+    <array name="Idiomas">
+        <item>Spanish</item>
+        <item>English</item>
+        <item>French</item>
+        <item>Italian</item>
+        <item>Japanese</item>
+        <item>Chinese</item>
+    </array>
+</resources>
