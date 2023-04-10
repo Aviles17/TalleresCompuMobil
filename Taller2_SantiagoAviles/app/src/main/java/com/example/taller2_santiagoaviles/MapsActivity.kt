@@ -3,6 +3,7 @@ package com.example.taller2_santiagoaviles
 import android.content.Context
 import android.content.IntentSender
 import android.content.pm.PackageManager
+import android.graphics.Color
 import android.hardware.Sensor
 import android.hardware.SensorEvent
 import android.hardware.SensorEventListener
@@ -12,15 +13,14 @@ import android.location.Location
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Looper
+import android.os.StrictMode
 import android.util.Log
 import android.view.inputmethod.EditorInfo
 import android.widget.Toast
 import androidx.activity.result.ActivityResultCallback
 import androidx.activity.result.IntentSenderRequest
 import androidx.activity.result.contract.ActivityResultContracts
-import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
-
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
@@ -30,11 +30,14 @@ import com.google.android.gms.maps.model.MarkerOptions
 import com.example.taller2_santiagoaviles.databinding.ActivityMapsBinding
 import com.google.android.gms.common.api.ResolvableApiException
 import com.google.android.gms.location.*
-import com.google.android.gms.maps.model.MapStyleOptions
 import com.google.android.gms.maps.model.Marker
+import com.google.android.gms.maps.model.PolylineOptions
 import com.google.android.gms.tasks.Task
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
+import org.osmdroid.bonuspack.routing.OSRMRoadManager
+import org.osmdroid.bonuspack.routing.RoadManager
+import org.osmdroid.util.GeoPoint
 import java.io.BufferedReader
 import java.io.IOException
 import java.io.InputStreamReader
@@ -94,11 +97,18 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
     private val upperRightLatitude = 11.983639
     private val upperRightLongitude = -71.869905
 
+    //OSRM
+    private lateinit var roadManager: RoadManager
+
     @Suppress("DEPRECATION")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMapsBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        //Inicializar gestor OSRM y politica sincornas 'Para pruebas'
+        roadManager = OSRMRoadManager(this, null)
+        val policy = StrictMode.ThreadPolicy.Builder().permitAll().build()
+        StrictMode.setThreadPolicy(policy)
         //Inicializar sensor de luminosidad
         sensorManager = getSystemService(SENSOR_SERVICE) as SensorManager
         lightSensor = sensorManager.getDefaultSensor(Sensor.TYPE_LIGHT)
@@ -157,7 +167,16 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
                                 this.SearchMarkerGeo.position = latLng
                             }
                             mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, 15f))
-                        } else {
+                            var distanceUM = distance(UserLoc.latitude,UserLoc.longitude, latLng.latitude, latLng.longitude)
+                            if(distanceUM >= 1000){
+                                distanceUM /= 1000
+                                Toast.makeText(baseContext, "Distance : $distanceUM KM",Toast.LENGTH_LONG).show()
+                            }
+                            else{
+                                Toast.makeText(baseContext, "Distance : $distanceUM M",Toast.LENGTH_LONG).show()
+                            }
+                        }
+                        else {
                             Toast.makeText(this, "Location not found", Toast.LENGTH_SHORT).show()
                         }
                     }
@@ -192,7 +211,41 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
                 else{
                     LongClickMarker.position = p0
                 }
+                val geocoder = Geocoder(baseContext)
+                try{
+                    val addresses = geocoder.getFromLocation(p0.latitude,p0.longitude,1)
+                    if(addresses != null){
+                        if(addresses.isNotEmpty()){
+                            val address = addresses[0]
+                            LongClickMarker.title = address.getAddressLine(0)
+                        }
+                        else{
+                            LongClickMarker.title = "Your LongClick Event"
+                        }
+                    }
+                }
+                catch (e : Exception){
+                    e.printStackTrace()
+                    Log.i("Error", "Error: " + e.message)
+                }
+                //Pintar ruta
+                val polylineOptions = PolylineOptions().apply{
+                    addAll(CreateRouteOSM(UserLoc.latitude,UserLoc.longitude,p0.latitude,p0.longitude))
+                    width(5F)
+                    color(Color.BLUE)
+                }
+                mMap.addPolyline(polylineOptions)
+                //Toast con distancia
+                var distanceUM = distance(UserLoc.latitude,UserLoc.longitude, p0.latitude, p0.longitude)
+                if(distanceUM >= 1000){
+                    distanceUM /= 1000
+                    Toast.makeText(baseContext, "Distance : $distanceUM KM",Toast.LENGTH_LONG).show()
+                }
+                else{
+                    Toast.makeText(baseContext, "Distance : $distanceUM M",Toast.LENGTH_LONG).show()
+                }
             }
+
         })
     }
 
@@ -214,7 +267,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
     }
 
 
-    fun locationSettings(){
+    private fun locationSettings(){
         val builder = LocationSettingsRequest.Builder().addLocationRequest(locationRequest)
         val client: SettingsClient = LocationServices.getSettingsClient(this)
         val task: Task<LocationSettingsResponse> = client.checkLocationSettings(builder.build())
@@ -242,7 +295,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
         }
     }
 
-    fun updateWriteLoc(it : Location){
+    private fun updateWriteLoc(it : Location){
         if(!::UserLoc.isInitialized){
             this.UserLoc = it
         }
@@ -305,7 +358,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
         }
     }
 
-    fun addRegisterToFile(context: Context, filename: String, register: JsonLoc) {
+    private fun addRegisterToFile(context: Context, filename: String, register: JsonLoc) {
         val regList = ReadJSON(baseContext, "Locations.json")?.toMutableList()
         if (regList != null) {
             regList.add(register)
@@ -314,7 +367,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
     }
 
 
-    fun startLocationUpdates(){
+    private fun startLocationUpdates(){
         if( ContextCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_FINE_LOCATION)== PackageManager.PERMISSION_GRANTED){
             locationClient.requestLocationUpdates(
                 locationRequest,
@@ -324,11 +377,11 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
         }
     }
 
-    fun stopLocationUpdates(){
+    private fun stopLocationUpdates(){
         locationClient.removeLocationUpdates(locationCallback)
     }
 
-    fun createLocationRequest() : LocationRequest{
+    private fun createLocationRequest() : LocationRequest{
         var locationRequest = LocationRequest.create()
             .setInterval(1000)
             .setFastestInterval(5000)
@@ -337,7 +390,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
     }
 
 
-    fun distance(lat1 : Double, long1: Double, lat2:Double, long2:Double) : Double{
+    private fun distance(lat1 : Double, long1: Double, lat2:Double, long2:Double) : Double{
         val latDistance = Math.toRadians(lat1 - lat2)
         val lngDistance = Math.toRadians(long1 - long2)
         val a = Math.sin(latDistance / 2) * Math.sin(latDistance / 2)+ Math.cos(Math.toRadians(lat1)) * Math.cos(Math.toRadians(lat2)) * Math.sin(lngDistance / 2) * Math.sin(lngDistance / 2)
@@ -347,4 +400,13 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
         return result *(1000);
     }
 
+    private fun CreateRouteOSM(lat1 : Double, long1: Double, lat2:Double, long2:Double): List<LatLng> {
+        val RoutePoints = ArrayList<GeoPoint>()
+        RoutePoints.add(GeoPoint(lat1,long1))
+        RoutePoints.add(GeoPoint(lat2,long2))
+        val road = roadManager.getRoad(RoutePoints)
+        val latLngList = road.routeLow.map{LatLng(it.latitude,it.longitude)}
+        return latLngList
+
+    }
 }
