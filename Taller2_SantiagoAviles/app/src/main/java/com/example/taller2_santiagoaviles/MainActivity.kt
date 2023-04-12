@@ -24,4 +24,11 @@ class MainActivity : AppCompatActivity() {
 
         }
     }
+
+    /*
+    Falta:
+    1. Revisar permisos de la actividad contactos
+    2. Revisar permisos de la actividad de mapas (Rationale)
+    3. Añadir JSONs raw [estilos] a los mapas
+     */
 }

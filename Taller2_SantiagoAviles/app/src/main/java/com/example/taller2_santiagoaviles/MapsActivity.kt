@@ -31,12 +31,12 @@ import com.example.taller2_santiagoaviles.databinding.ActivityMapsBinding
 import com.google.android.gms.common.api.ResolvableApiException
 import com.google.android.gms.location.*
 import com.google.android.gms.maps.model.Marker
+import com.google.android.gms.maps.model.Polyline
 import com.google.android.gms.maps.model.PolylineOptions
 import com.google.android.gms.tasks.Task
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import org.osmdroid.bonuspack.routing.OSRMRoadManager
-import org.osmdroid.bonuspack.routing.RoadManager
 import org.osmdroid.util.GeoPoint
 import java.io.BufferedReader
 import java.io.IOException
@@ -98,7 +98,9 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
     private val upperRightLongitude = -71.869905
 
     //OSRM
-    private lateinit var roadManager: RoadManager
+    private lateinit var roadManager: OSRMRoadManager
+    private lateinit var polyline : Polyline
+    private lateinit var polylineJSON : Polyline
 
     @Suppress("DEPRECATION")
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -106,7 +108,12 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
         binding = ActivityMapsBinding.inflate(layoutInflater)
         setContentView(binding.root)
         //Inicializar gestor OSRM y politica sincornas 'Para pruebas'
-        roadManager = OSRMRoadManager(this, null)
+        roadManager = OSRMRoadManager(this, "ANDROID")
+        roadManager.addRequestOption("geometries=polyline")
+        roadManager.addRequestOption("overview=full")
+        roadManager.addRequestOption("annotations=true")
+        roadManager.addRequestOption("steps=true")
+        roadManager.addRequestOption("alternatives=true")
         val policy = StrictMode.ThreadPolicy.Builder().permitAll().build()
         StrictMode.setThreadPolicy(policy)
         //Inicializar sensor de luminosidad
@@ -148,7 +155,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
                 }
             }
         }
-
+        // Evento de Editar y enviar desde el EditText
         binding.inputusuario.setOnEditorActionListener { textView, i, keyEvent ->
             if (i == EditorInfo.IME_ACTION_SEND) {
                 val location = binding.inputusuario.text.toString()
@@ -167,6 +174,19 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
                                 this.SearchMarkerGeo.position = latLng
                             }
                             mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, 15f))
+                            //Pintar ruta
+                            val polylineOptions = PolylineOptions().apply{
+                                addAll(CreateRouteOSM(UserLoc.latitude,UserLoc.longitude,address.latitude,address.longitude))
+                                width(5F)
+                                color(Color.BLUE)
+                            }
+                            if(!::polyline.isInitialized){
+                                polyline = mMap.addPolyline(polylineOptions)
+                            }
+                            else{
+                                polyline.remove()
+                                polyline = mMap.addPolyline(polylineOptions)
+                            }
                             var distanceUM = distance(UserLoc.latitude,UserLoc.longitude, latLng.latitude, latLng.longitude)
                             if(distanceUM >= 1000){
                                 distanceUM /= 1000
@@ -188,6 +208,9 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
             }
             false
         }
+
+        //Evento en el cual se oprima el boton de dibujar ruta
+        binding.DrawRoute.setOnClickListener{DrawRoute()}
     }
 
 
@@ -234,7 +257,13 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
                     width(5F)
                     color(Color.BLUE)
                 }
-                mMap.addPolyline(polylineOptions)
+                if(!::polyline.isInitialized){
+                    polyline = mMap.addPolyline(polylineOptions)
+                }
+                else{
+                    polyline.remove()
+                    polyline = mMap.addPolyline(polylineOptions)
+                }
                 //Toast con distancia
                 var distanceUM = distance(UserLoc.latitude,UserLoc.longitude, p0.latitude, p0.longitude)
                 if(distanceUM >= 1000){
@@ -252,7 +281,12 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
 
     private fun createMarker(){
         val MarkerI = LatLng(this.UserLoc.latitude,this.UserLoc.longitude)
-        this.UserLocMarker = mMap.addMarker(MarkerOptions().position(MarkerI).title("Your Location!"))!!
+        if(!::UserLocMarker.isInitialized){
+            this.UserLocMarker = mMap.addMarker(MarkerOptions().position(MarkerI).title("Your Location!"))!!
+        }
+        else{
+            this.UserLocMarker.position = MarkerI
+        }
         mMap.uiSettings.setAllGesturesEnabled(true)
         mMap.uiSettings.isZoomControlsEnabled = true
         if(!this.FirstAnimationLoc){
@@ -405,8 +439,35 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
         RoutePoints.add(GeoPoint(lat1,long1))
         RoutePoints.add(GeoPoint(lat2,long2))
         val road = roadManager.getRoad(RoutePoints)
-        val latLngList = road.routeLow.map{LatLng(it.latitude,it.longitude)}
+        val latLngList = road.mRouteHigh.map{LatLng(it.latitude,it.longitude)}
         return latLngList
+    }
 
+    private fun DrawRoute(){
+        val steps = ReadJSON(baseContext,"Locations.json")
+        val listMov = ArrayList<LatLng>()
+        if (steps != null) {
+            for(latlng in steps){
+                val CoordMov = LatLng(latlng.Lat,latlng.Long)
+                listMov.add(CoordMov)
+            }
+            //Pintar ruta
+            val polylineOptions = PolylineOptions().apply{
+                addAll(listMov)
+                width(5F)
+                color(Color.RED)
+            }
+            if(!::polylineJSON.isInitialized){
+                polylineJSON = mMap.addPolyline(polylineOptions)
+            }
+            else{
+                polylineJSON.remove()
+                polylineJSON = mMap.addPolyline(polylineOptions)
+            }
+
+        }
+        else{
+            Toast.makeText(baseContext,"Para usar esta funcion debe de moverse", Toast.LENGTH_LONG).show()
+        }
     }
 }

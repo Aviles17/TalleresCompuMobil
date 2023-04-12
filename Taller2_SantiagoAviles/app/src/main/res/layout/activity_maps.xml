@@ -4,6 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:android="http://schemas.android.com/apk/res/android">
 
     <androidx.fragment.app.FragmentContainerView
@@ -26,5 +27,15 @@
         android:inputType="text"
         android:imeOptions="actionSend"
         />
+
+    <ImageButton
+        android:id="@+id/DrawRoute"
+        android:layout_width="45dp"
+        android:layout_height="54dp"
+        android:layout_gravity="bottom"
+        android:layout_marginLeft="358dp"
+        android:layout_marginRight="15dp"
+        android:layout_marginBottom="90dp"
+        app:srcCompat="@drawable/baseline_filter_tilt_shift_24" />
 
 </FrameLayout>
