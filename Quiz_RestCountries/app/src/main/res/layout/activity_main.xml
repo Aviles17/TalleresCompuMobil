@@ -7,42 +7,69 @@
     tools:context=".MainActivity">
 
     <Button
-        android:id="@+id/List"
-        android:layout_width="188dp"
-        android:layout_height="60dp"
-        android:layout_marginStart="150dp"
-        android:layout_marginEnd="150dp"
-        android:layout_marginBottom="152dp"
-        android:text="List"
-        app:layout_constraintBottom_toTopOf="@+id/ZonaEcon"
+        android:id="@+id/EuroEcon"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="80dp"
+        android:layout_marginTop="50dp"
+        android:layout_marginEnd="80dp"
+        android:layout_marginBottom="60dp"
+        android:text="Euro Econ"
+        app:layout_constraintBottom_toTopOf="@+id/YenCurrency"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/ZonaEcon"
-        android:layout_width="188dp"
-        android:layout_height="60dp"
-        android:layout_marginStart="150dp"
-        android:layout_marginEnd="150dp"
-        android:text="ZonaEcon"
+        android:id="@+id/YenCurrency"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="80dp"
+        android:layout_marginEnd="80dp"
+        android:layout_marginBottom="60dp"
+        android:text="Yen Currency"
+        app:layout_constraintBottom_toTopOf="@+id/French_Cap"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/EuroEcon" />
 
+    <Button
+        android:id="@+id/French_Cap"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="80dp"
+        android:layout_marginEnd="80dp"
+        android:layout_marginBottom="270dp"
+        android:text="French Capitals"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/List" />
+        app:layout_constraintTop_toBottomOf="@+id/YenCurrency" />
 
     <Spinner
         android:id="@+id/spinner"
         android:layout_width="409dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="1dp"
-        android:layout_marginTop="279dp"
-        android:layout_marginEnd="1dp"
-        android:layout_marginBottom="2dp"
-        app:layout_constraintBottom_toTopOf="@+id/ZonaEcon"
+        android:layout_marginTop="45dp"
+        android:layout_marginBottom="48dp"
+        android:entries="@array/Zonas"
+        app:layout_constraintBottom_toTopOf="@+id/EconZone"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/List" />
+        app:layout_constraintTop_toBottomOf="@+id/French_Cap" />
+
+    <Button
+        android:id="@+id/EconZone"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="80dp"
+        android:layout_marginEnd="80dp"
+        android:layout_marginBottom="100dp"
+        android:text="Zona Economica"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/spinner" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

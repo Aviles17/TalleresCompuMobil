@@ -13,11 +13,19 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
 
-        binding.List.setOnClickListener {
-            startActivity(Intent(baseContext,MainActivity2::class.java))
+        binding.EuroEcon.setOnClickListener {
+            startActivity(Intent(baseContext,EuroZoneActivity::class.java))
         }
-        binding.ZonaEcon.setOnClickListener {
-            //Ignore
+        binding.YenCurrency.setOnClickListener {
+            startActivity(Intent(baseContext,ActivityYenCapitals::class.java))
+        }
+        binding.FrenchCap.setOnClickListener{
+            startActivity(Intent(baseContext,FrenchCapitalsActivity::class.java))
+        }
+        binding.EconZone.setOnClickListener {
+            startActivity(Intent(baseContext,EconZoneActivity::class.java).apply {
+                putExtra("Zona", binding.spinner.selectedItem.toString())
+            })
         }
     }
 }

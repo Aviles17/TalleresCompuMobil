@@ -1,3 +1,13 @@
 <resources>
     <string name="app_name">Quiz_RestCountries</string>
+    <array name="Zonas">
+        <item>EU</item>
+        <item>EFTA</item>
+        <item>CARICOM</item>
+        <item>PA</item>
+        <item>AU</item>
+        <item>USAN</item>
+        <item>EAEU</item>
+        <item>AL</item>
+    </array>
 </resources>

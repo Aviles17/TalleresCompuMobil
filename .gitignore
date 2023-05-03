@@ -1,2 +1,3 @@
 # Ignorar proyectos de prueba dentro del repositorio local
 Pruebas_1/
+*.rar

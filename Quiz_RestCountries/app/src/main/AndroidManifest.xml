@@ -2,6 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
@@ -12,7 +14,19 @@
         android:theme="@style/Theme.Quiz_RestCountries"
         tools:targetApi="31">
         <activity
-            android:name=".MainActivity2"
+            android:name=".DisplayPaisActivity"
+            android:exported="false" />
+        <activity
+            android:name=".EconZoneActivity"
+            android:exported="false" />
+        <activity
+            android:name=".FrenchCapitalsActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ActivityYenCapitals"
+            android:exported="false" />
+        <activity
+            android:name=".EuroZoneActivity"
             android:exported="false" />
         <activity
             android:name=".MainActivity"
