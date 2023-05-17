@@ -1,0 +1,44 @@
+<resources>
+    <string name="app_name">Taller_3(V2)</string>
+    <string name="app_name">Taller3</string>
+    <string name="title_activity_maps">MapsActivity</string>
+    <string name="quickstart_message">Click the SUBSCRIBE TO NEWS button below to subscribe to the
+        news topic. Messages sent to the news topic will be received. The LOG TOKEN button logs the
+        InstanceID token to logcat.</string>
+    <string name="subscribe_to_news">Subscribe To News</string>
+    <string name="log_token">Log Token</string>
+
+    <string name="msg_subscribed">Subscribed to news topic</string>
+    <string name="msg_token_fmt" translatable="false">InstanceID Token: %s</string>
+
+    <string name="default_notification_channel_id" translatable="false">fcm_default_channel</string>
+    <!--
+        This is the name that users will see when interacting with this channel.
+        It should describe the category of notifications that will be sent through this channel
+     -->
+    <string name="default_notification_channel_name" translatable="true">News</string>
+    <string name="msg_subscribe_failed">Failed to subscribe to news topic</string>
+    <string name="esta_disponible">Esta disponible</string>
+    <string name="welcome">¡Bienvenidx!</string>
+    <string name="welcomedes">La aplicación que te permitirá encontrar fácilmente a\n tus amigos</string>
+    <string name="content">Imagen hola</string>
+    <string name="registrar">Registrar</string>
+    <string name="login">Iniciar Sesión</string>
+    <string name="correo">Correo</string>
+    <string name="password">Contraseña</string>
+    <string name="hello">¡Hola!</string>
+    <string name="des">Anímate a llenar los datos a continuación para ser parte de\n la comunidad</string>
+    <string name="name">Nombre:</string>
+    <string name="namedes">Ingresa aquí tu nombre...</string>
+    <string name="last">Apellido:</string>
+    <string name="lastdes">Ingresa aquí tu apellido..</string>
+    <string name="mail">Correo:</string>
+    <string name="maildes">Ingresa aquí tu correo..</string>
+    <string name="pass">Contraseña:</string>
+    <string name="passdes">Ingresa aquí tu contraseña..</string>
+    <string name="iden">Identificación:</string>
+    <string name="idendes">Ingresa aquí tu numero de identificación..</string>
+    <string name="profile">Foto Perfil:</string>
+    <string name="registrarse">Registrarse</string>
+    <string name="hola">Hola</string>
+</resources>

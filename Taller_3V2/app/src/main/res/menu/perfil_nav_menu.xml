@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/disponible"
+        android:title="@string/esta_disponible"
+        app:actionLayout="@layout/switch_item"
+        app:showAsAction="ifRoom" />
+    <item
+        android:id="@+id/logout"
+        android:icon="@drawable/ic_logout"
+        android:title="Cerrar sesion"
+        app:showAsAction="ifRoom" />
+
+
+</menu>
