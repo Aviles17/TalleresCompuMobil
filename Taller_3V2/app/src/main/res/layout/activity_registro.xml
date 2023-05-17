@@ -26,7 +26,6 @@
                 android:layout_marginTop="30dp"
                 android:text="@string/hello"
                 android:textAlignment="center"
-                android:textColor="@color/gris_clarito"
                 android:textSize="34sp"
                 android:textStyle="bold"
                 android:typeface="monospace"
@@ -53,7 +52,6 @@
                     android:layout_marginEnd="15dp"
                     android:layout_marginTop="10dp"
                     android:text="@string/name"
-                    android:textColor="@color/md_blue_900"
                     android:textSize="25sp" />
 
                 <EditText
@@ -66,7 +64,6 @@
                     android:hint="@string/namedes"
                     android:inputType="text"
                     android:minHeight="48dp"
-                    android:textColor="@color/gris_oscuro"
                     android:textColorHint="#00838F"
                     android:textSize="16sp" />
             </LinearLayout>
@@ -84,7 +81,6 @@
                     android:layout_marginEnd="15dp"
                     android:layout_marginTop="20dp"
                     android:text="@string/last"
-                    android:textColor="@color/md_blue_900"
                     android:textSize="25sp" />
 
                 <EditText
@@ -97,7 +93,6 @@
                     android:hint="@string/lastdes"
                     android:inputType="text"
                     android:minHeight="48dp"
-                    android:textColor="@color/gris_oscuro"
                     android:textColorHint="#00838F"
                     android:textSize="16sp" />
             </LinearLayout>
@@ -115,7 +110,6 @@
                     android:layout_marginEnd="15dp"
                     android:layout_marginTop="20dp"
                     android:text="@string/mail"
-                    android:textColor="@color/md_blue_900"
                     android:textSize="25sp" />
 
                 <EditText
@@ -128,7 +122,6 @@
                     android:hint="@string/maildes"
                     android:inputType="textEmailAddress"
                     android:minHeight="48dp"
-                    android:textColor="@color/gris_oscuro"
                     android:textColorHint="#00838F"
                     android:textSize="16sp" />
             </LinearLayout>
@@ -146,7 +139,6 @@
                     android:layout_marginEnd="15dp"
                     android:layout_marginTop="20dp"
                     android:text="@string/pass"
-                    android:textColor="@color/md_blue_900"
                     android:textSize="25sp" />
 
                 <EditText
@@ -161,7 +153,6 @@
                     android:minHeight="48dp"
                     android:paddingStart="20dp"
                     android:paddingEnd="0dp"
-                    android:textColor="@color/gris_oscuro"
                     android:textColorHint="#00838F"
                     android:textSize="16sp" />
             </LinearLayout>
@@ -179,7 +170,6 @@
                     android:layout_marginEnd="15dp"
                     android:layout_marginTop="20dp"
                     android:text="@string/iden"
-                    android:textColor="@color/md_blue_900"
                     android:textSize="25sp" />
 
                 <EditText
@@ -194,7 +184,6 @@
                     android:minHeight="48dp"
                     android:paddingStart="0dp"
                     android:paddingEnd="20dp"
-                    android:textColor="@color/gris_oscuro"
                     android:textColorHint="#00838F"
                     android:textSize="16sp" />
 
@@ -213,7 +202,6 @@
                     android:layout_marginEnd="15dp"
                     android:layout_marginTop="20dp"
                     android:text="@string/profile"
-                    android:textColor="@color/md_blue_900"
                     android:textSize="25sp" />
 
                 <ImageView
@@ -226,7 +214,7 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:srcCompat="@drawable/ic_photo"
+                    app:srcCompat="@drawable/ic_launcher_background"
                     tools:ignore="SpeakableTextPresentCheck"
                     android:contentDescription="@string/hola" />
 
@@ -241,9 +229,7 @@
                 android:layout_gravity="center"
                 android:layout_marginTop="20dp"
                 android:text="@string/registrarse"
-                android:textColor="@color/md_blue_100"
                 android:textSize="15sp"
-                app:backgroundTint="@color/gris_clarito"
                 app:cornerRadius="15dp" />
         </LinearLayout>
 

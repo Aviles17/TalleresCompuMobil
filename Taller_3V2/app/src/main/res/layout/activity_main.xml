@@ -29,7 +29,6 @@
 
                 android:text="@string/welcome"
                 android:textAlignment="center"
-                android:textColor="@color/gris_clarito"
                 android:textSize="34sp"
                 android:textStyle="bold"
                 android:typeface="monospace"
@@ -52,9 +51,7 @@
                 android:layout_width="160dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:backgroundTint="@color/md_blue_200"
-                android:text="@string/login"
-                android:textColor="@color/gris_oscuro" />
+                android:text="@string/login"/>
 
             <Space
                 android:layout_width="20dp"
@@ -66,9 +63,7 @@
                 android:layout_marginTop="20dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:backgroundTint="@color/gris_clarito"
-                android:text="@string/registrar"
-                android:textColor="@color/md_blue_200" />
+                android:text="@string/registrar" />
 
 
         </LinearLayout>

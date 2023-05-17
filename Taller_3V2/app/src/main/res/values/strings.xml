@@ -1,6 +1,5 @@
 <resources>
     <string name="app_name">Taller_3(V2)</string>
-    <string name="app_name">Taller3</string>
     <string name="title_activity_maps">MapsActivity</string>
     <string name="quickstart_message">Click the SUBSCRIBE TO NEWS button below to subscribe to the
         news topic. Messages sent to the news topic will be received. The LOG TOKEN button logs the
